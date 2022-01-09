@@ -6,6 +6,24 @@ This repo contains some code used in my research project on neighborhood effects
 
 Trampolines are popular among Swedish families. Thanks to their size and distinct shape, they can be detected in an aerial photo. To collect data on trampoline ownership, I apply an instance of Inception ResNet to a large set of aerial photos of Swedish neighborhoods taken between 2006 and 2018.
 
+## Installation
+
+### Environment
+
+pyenv using https://www.techtronic.us/install-python-pyenv-on-wsl-ubuntu/ 
+
+but with 
+
+    eval "$(pyenv init --path)"
+
+in ~/.bashrc
+
+## Poetry
+
+Used guide here https://python-poetry.org/docs/
+
+https://python-poetry.org/docs/master/#installing-with-the-official-installer
+
 ## Image preprocessing
 
 Each raw image is a 10,000 by 10,000 pixel GeoTIFF. As my data contains several thousand images, importing all of them into QGIS is not feasible. In ```geotiff_coverage.py```, I extract metadata from each image and it's corresponding json meta file and collect the geographic extent of each image in a shapefile:

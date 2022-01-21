@@ -7,3 +7,7 @@ dependencies:
   - requests
   - python-dotenv
   - pytorch
+  - torchvision 
+  - torchaudio
+  - cudatoolkit=10.2 
+

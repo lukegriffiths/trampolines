@@ -6,6 +6,27 @@ This repo contains some code used in my research project on neighborhood effects
 
 Trampolines are popular among Swedish families. Thanks to their size and distinct shape, they can be detected in an aerial photo. To collect data on trampoline ownership, I apply an instance of Inception ResNet to a large set of aerial photos of Swedish neighborhoods taken between 2006 and 2018.
 
+## Data
+
+### Image data
+
+Image data is loaded from Google static maps API. Run get_images.py to download the files. This requires a api_key.env text file for the API key.
+
+### Labelling data
+
+I used https://github.com/tzutalin/labelImg to label the data according to the YOLO formatting standard.
+
+Images are split into train and validation sets.
+
+├───images
+│   ├───train
+│   └───validation
+└───labels
+    ├───train
+    └───validation
+
+
+
 ## Installation
 
 ### Environment

@@ -3,13 +3,14 @@ import time
 import os
 from dotenv import load_dotenv
 import numpy as np
+from tqdm import tqdm
 
 # load environment variables with API key
 load_dotenv('api_key.env')
 API_KEY = os.environ.get('API_KEY')
 print(API_KEY)
 
-def get_image(coords,topath):
+def get_image(coords,topath, verbose=False):
     """Get satellite image using google maps staticmap API
 
     Args:
@@ -29,12 +30,15 @@ def get_image(coords,topath):
             'center': coords
         }
         #print(params['center'])
+
     response = requests.get(GOOGLE_MAPS_API_URL, params=params)
-    print(response.status_code)
+    if verbose:
+        print(response.status_code)
     time.sleep(1)
         
     filepath = topath + '_gmaps.jpg'
-    print(filepath)
+    if verbose:
+        print(filepath)
             
     with open(filepath, 'wb') as f:
         f.write(response.content)
@@ -62,6 +66,7 @@ if __name__ =='__main__':
 
     # write text file with image names and coordinates
     with open('./images/images.txt', 'w') as f:
-        for i, coords in enumerate(coords_vec):
+        print('Getting image data...')
+        for i, coords in enumerate(tqdm(coords_vec)):
             f.write(f"{i+OFFSET}, {coords[0]}, {coords[1]}\n")
-            get_image(coords, topath=f'images/{i+OFFSET}')
+            get_image(coords, topath=f'images/{i+OFFSET}', verbose=False)

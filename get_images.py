@@ -10,7 +10,7 @@ load_dotenv('api_key.env')
 API_KEY = os.environ.get('API_KEY')
 print(API_KEY)
 
-def get_image(coords,topath, verbose=False):
+def get_image(coords,topath, zoom=18, verbose=False):
     """Get satellite image using google maps staticmap API
 
     Args:
@@ -23,9 +23,9 @@ def get_image(coords,topath, verbose=False):
     
     params = {
             'key': API_KEY,
-            'size': '1024x1024',
+            'size': '640x640',
             'maptype': 'satellite',
-            'zoom': '18',
+            'zoom': str(zoom),
             'format': 'jpg',
             'center': coords
         }
@@ -48,11 +48,11 @@ if __name__ =='__main__':
 
     # initial parameters
     coords_start = (59.93717029103388, 10.807871254728301) # lat long coordinates of start point
-    num_lat = 10 # number of images to take in lat direction
-    num_long = 10 # number of images to take in long direction
+    num_lat = 1 # number of images to take in lat direction
+    num_long = 2 # number of images to take in long direction
     spacing = 0.003 # interval in degrees between images
     OFFSET = 25 # start of numbering of images
-
+    zoom = 20
     # make zero-array of coordinate pairs
     coords_grid = np.zeros((num_lat,num_long), dtype='f,f')
 
@@ -68,5 +68,5 @@ if __name__ =='__main__':
     with open('./images/images.txt', 'w') as f:
         print('Getting image data...')
         for i, coords in enumerate(tqdm(coords_vec)):
-            f.write(f"{i+OFFSET}, {coords[0]}, {coords[1]}\n")
-            get_image(coords, topath=f'images/{i+OFFSET}', verbose=False)
+            f.write(f"{i+OFFSET}, {coords[0]}, {coords[1]}, {zoom}\n")
+            get_image(coords, topath=f'images/{i+OFFSET}', zoom=zoom, verbose=False)

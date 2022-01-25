@@ -1,0 +1,4 @@
+train: ../data/images/train
+val: ../data/images/validation
+nc: 1
+names: ["trampoline"]

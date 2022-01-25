@@ -1,44 +1,80 @@
-# Trampoline detection using CNN
+# Trampoline detection using YOLOv5
 
-## Intro
+## Background
 
-This repo contains some code used in my research project on neighborhood effects in consumption. You can download a working paper on my personal [website](http://erikgrenestam.se/wp-content/uploads/2019/04/Bouncing-with-the-Joneses-ErikG.pdf).
+Walking around Oslo, you can see many gardens with trampolines - but how many? This repo contains:
+* Code to get satellite images from Google Maps using the Static Maps API
+* Instructions to:
+    - label the data
+    - prepare the data for YOLOv5
 
-Trampolines are popular among Swedish families. Thanks to their size and distinct shape, they can be detected in an aerial photo. To collect data on trampoline ownership, I apply an instance of Inception ResNet to a large set of aerial photos of Swedish neighborhoods taken between 2006 and 2018.
+## Resources
+
+Train custom object detection model with YOLO V5 - Abhishek Thakur
+https://www.youtube.com/watch?v=NU9Xr_NYslo
+
 
 ## Installation
-conda create -n yolo5env python=3.9
-conda activate yolo
-pip install -r requirements.txt
+
+Install the requirements in requirements.txt, which has been adapted from the YOLOv5 requirements file. I used a conda environment (called yolo5env) with python 3.9, and then pip for all required packages, as below:
+
+    conda create -n yolo5env python=3.9
+    conda activate yolo5env
+    pip install -r requirements.txt
+
+I found that cuda version cu102 had some issues, but cu101 worked well. I haven't tried any newer versions of the cuda package.
+
+Clone Yolov5 from https://github.com/ultralytics/yolov5 into the subfolder /yolov5.
 
 ## Data
 
-### Image data
+Image data is loaded from Google static maps API using get_images.py
 
-Image data is loaded from Google static maps API. Run get_images.py to download the files. This requires a api_key.env text file for the API key.
+This script requires an API Key which is stored in api_key.env text file containing one line(you need to make this yourself):
+
+    API_KEY = "YOUR_KEY_HERE"
+    
 
 ### Labelling data
 
-I used https://github.com/tzutalin/labelImg to label the data according to the YOLO formatting standard.
+I used https://github.com/tzutalin/labelImg to label the data according to the YOLO formatting standard. I cloned the repository and installed the dependencies into a separate clean environment used only for labelling images. 
 
-Images are split into train and validation sets.
+For labelling, open the folder where you have the images (/images in this case), change type to YOLO, and I used autosave and single class mode ('trampolines').
 
-├───images
-│   ├───train
-│   └───validation
-└───labels
-    ├───train
-    └───validation
+For YOLO, jmages need to be split into train and validation sets using the file structure below:
 
+    ├───data
+
+        ├───images
+
+            ├───train
+
+            └───validation
+        └───labels
+
+            ├───train
+
+            └───validation
+    ├───yolo
+        ├───models
+            ├───trampolines.yaml
+
+Labels contains text files, and images contains the images.
 
 ## Training 
 
-From the yolov5 directory, run
+Copy trampolines.yaml into the /yolov5/data/ folder. This contains some model parameters, for example here I use the the yolov5 small model. This file also contains the relative filepaths of the training and validation images.
 
-    python .\train.py --img 640 --batch 16 --epochs 100 --data data/trampolines.yaml --cfg models\yolov5s.yaml --name tm
+First cd to the the /yolov5 directory and run
+
+    python .\train.py --img 640 --batch 32 --epochs 200 --data data/trampolines.yaml --cfg models\yolov5s.yaml --name tm
+
+The trained model and metrics will be saved to /yolov5/runs/train in a folder named tmX with X incrementing by 1 each time.
 
 ## Testing
 
-From the yolov5 directory, run
+From the yolov5 directory, run the following, with the weights folder you want to use (below it looks for the weights in /tm7):
 
     python .\detect.py --source ../data/test --weights runs/train/tm7/weights/best.pt --data data/trampolines.yaml
+
+The classified images will be will be saved to /yolov5/runs/detect

@@ -23,7 +23,6 @@ Results of the prediction are the coordinates of bounding boxes around the tramp
 Train custom object detection model with YOLO V5 - Abhishek Thakur
 https://www.youtube.com/watch?v=NU9Xr_NYslo
 
-
 ## Installation
 
 Install the requirements in requirements.txt, which has been adapted from the YOLOv5 requirements file. I used a conda environment (called yolo5env) with python 3.9, and then pip for all required packages, as below:
@@ -51,7 +50,7 @@ I used https://github.com/tzutalin/labelImg to label the data according to the Y
 
 For labelling, open the folder where you have the images (/images in this case), change type to YOLO, and I used autosave and single class mode ('trampolines').
 
-For YOLO, jmages need to be split into train and validation sets using the file structure below:
+For YOLO, jmages need to be split into train and validation sets using the file structure below Labels contains text files, and images contains the images. If you follow the below structure, then split_data.py will perform a train-test-split and put the data in the right places. 
 
     ├───data
 
@@ -69,7 +68,8 @@ For YOLO, jmages need to be split into train and validation sets using the file 
         ├───models
             ├───trampolines.yaml
 
-Labels contains text files, and images contains the images.
+    ├───images
+
 
 ## Training 
 

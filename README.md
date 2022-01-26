@@ -64,12 +64,15 @@ For YOLO, jmages need to be split into train and validation sets using the file 
             ├───train
 
             └───validation
-    ├───yolo
+    ├───yolov5
         ├───models
             ├───trampolines.yaml
 
     ├───images
 
+* /images contains images and their labels
+* /data contains all the data for training and validation
+* /yolov5 contains the cloned YOLOv5 repo, with trampolines.yaml copied from this repo into the /yolov5/models folder.
 
 ## Training 
 

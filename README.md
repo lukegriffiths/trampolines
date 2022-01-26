@@ -1,12 +1,22 @@
 # Trampoline detection using YOLOv5
-
 ## Background
 
-Walking around Oslo, you can see many gardens with trampolines - but how many? This repo contains:
+Walking around Oslo, you can see many gardens with trampolines - but how many? 
+
+This repo contains:
 * Code to get satellite images from Google Maps using the Static Maps API
 * Instructions to:
     - label the data
-    - prepare the data for YOLOv5
+    - Prepare the data for YOLOv5
+    - Train the model and make predictions
+
+Results of the prediction are the coordinates of bounding boxes around the trampolines in the satellite images, as below.
+
+![](./resources/val_batch0_pred.jpg)
+## To do
+
+* Extract long and lat of each trampoline from predicted data
+* Make maps of trampoline density across Oslo
 
 ## Resources
 

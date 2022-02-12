@@ -48,10 +48,9 @@ if __name__ =='__main__':
 
     # initial parameters
     coords_start = (59.93717029103388, 10.807871254728301) # lat long coordinates of start point
-    coords_start = (59.8988754947354, 10.550180496604892)
     num_lat = 15 # number of images to take in lat direction
     num_long = 15 # number of images to take in long direction
-    spacing = 0.003 # interval in degrees between images
+    spacing = 0.0025 # interval in degrees between images 0.0025 at zoom level 18
     OFFSET = 0 # start of numbering of images
     zoom = 19
     # make zero-array of coordinate pairs

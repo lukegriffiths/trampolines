@@ -101,5 +101,7 @@ The classified images will be will be saved to /yolov5/runs/detect
 
 ## Visualisation
 
-visualisation.ipynb plots both the data from the manually labelled test-train set, and the data predicted by the model across the Oslo area.
+visualisation.ipynb plots both the data from the manually labelled test-train set (below), and the data predicted by the model across the Oslo area.
+
+![](./resources/training_set_location.png)
 

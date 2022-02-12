@@ -43,6 +43,7 @@ This script requires an API Key which is stored in api_key.env text file contain
 
     API_KEY = "YOUR_KEY_HERE"
     
+get_images.py will save the images in /images along with a csv text file with the image number, long and lat, and the zoom level.
 
 ### Labelling data
 

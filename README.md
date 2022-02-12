@@ -90,6 +90,6 @@ The trained model and metrics will be saved to /yolov5/runs/train in a folder na
 
 From the yolov5 directory, run the following, with the weights folder you want to use (below it looks for the weights in /tm7):
 
-    python .\detect.py --source ../data/test --weights runs/train/tm7/weights/best.pt --data data/trampolines.yaml
+    python .\detect.py --source ../images/data_2022-02-12 --weights runs/train/tm14/weights/best.pt --data data/trampolines.yaml
 
 The classified images will be will be saved to /yolov5/runs/detect

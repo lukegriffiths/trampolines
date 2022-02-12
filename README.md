@@ -36,7 +36,7 @@ I found that cuda version cu102 had some issues, but cu101 worked well. I haven'
 
 Clone Yolov5 from https://github.com/ultralytics/yolov5 into the subfolder /yolov5.
 
-## Data
+## Getting the satellite data
 
 Image data is loaded from Google static maps API using get_images.py
 
@@ -48,7 +48,7 @@ get_images.py will save the images in /images along with a csv text file with th
 
 coordinates_calculation.ipynb is used to calculate the steps between images in measures of longitude and lattitude so that images neither overlap or have gaps between them. This depends on the location, the zoom level, and the size of the image in pixels.
 
-### Labelling data
+## Labelling the data
 
 I used https://github.com/tzutalin/labelImg to label the data according to the YOLO formatting standard. 
 
@@ -101,7 +101,7 @@ The classified images will be will be saved to /yolov5/runs/detect
 
 ## Visualisation
 
-visualisation.ipynb plots both the data from the manually labelled test-train set (below), and the data predicted by the model across the Oslo area.
+visualisation.ipynb plots both the data from the manually-labelled test-train set (below), and the data predicted by the model across the Oslo area.
 
 ![](./resources/training_set_location.png)
 

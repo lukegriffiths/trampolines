@@ -16,10 +16,8 @@ Results of the prediction are the coordinates of bounding boxes around the tramp
 ![](./resources/val_batch0_pred.jpg)
 ## To do
 
-* Extract long and lat of each trampoline from predicted data
-* Make maps of trampoline density across Oslo
+* Finalise making maps of trampoline density across Oslo
 * Make get_images.py into commandline tool
-* Optimise spacing between images to get no overlap at different zooms
 
 ## Resources
 
@@ -48,13 +46,17 @@ This script requires an API Key which is stored in api_key.env text file contain
     
 get_images.py will save the images in /images along with a csv text file with the image number, long and lat, and the zoom level.
 
+coordinates_calculation.ipynb is used to calculate the steps between images in measures of longitude and lattitude so that images neither overlap or have gaps between them. This depends on the location, the zoom level, and the size of the image in pixels.
+
 ### Labelling data
 
-I used https://github.com/tzutalin/labelImg to label the data according to the YOLO formatting standard. I cloned the repository and installed the dependencies into a separate clean environment used only for labelling images. 
+I used https://github.com/tzutalin/labelImg to label the data according to the YOLO formatting standard. 
 
-For labelling, open the folder where you have the images (/images in this case), change type to YOLO, and I used autosave and single class mode ('trampolines').
+For this, I cloned the repository and installed the dependencies into a separate, clean environment used only for labelling images. 
 
-For YOLO, jmages need to be split into train and validation sets using the file structure below Labels contains text files, and images contains the images. If you follow the below structure, then split_data.py will perform a train-test-split and put the data in the right places. 
+To start labelling, I opened the folder containing the images (/images in this case), changed type to YOLO, and used autosave and single class mode ('trampolines') to go faster and minimise mouse-clicks.
+
+For YOLO, images need to be split into train and validation sets using the file structure below. Labels contains only text files as produced from labelImg, and images contains only the images. If you follow the below structure, then the split_data.py script will perform a train-test-split using the data in /images and put the data in the correct folders of /data for you.
 
     ├───data
 
@@ -77,7 +79,7 @@ For YOLO, jmages need to be split into train and validation sets using the file 
 
 * /images contains images and their labels
 * /data contains all the data for training and validation
-* /yolov5 contains the cloned YOLOv5 repo, with trampolines.yaml copied from this repo into the /yolov5/models folder.
+* /yolov5 contains the cloned YOLOv5 repo
 
 ## Training 
 
@@ -96,3 +98,8 @@ From the yolov5 directory, run the following, with the weights folder you want t
     python .\detect.py --source ../images/data_2022-02-12 --weights runs/train/tm14/weights/best.pt --save-txt --data data/trampolines.yaml
 
 The classified images will be will be saved to /yolov5/runs/detect
+
+## Visualisation
+
+visualisation.ipynb plots both the data from the manually labelled test-train set, and the data predicted by the model across the Oslo area.
+

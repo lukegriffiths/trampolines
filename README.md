@@ -18,6 +18,7 @@ Results of the prediction are the coordinates of bounding boxes around the tramp
 
 * Finalise making maps of trampoline density across Oslo
 * Make get_images.py into commandline tool
+* Add more analysis of model training metrics
 
 ## Resources
 

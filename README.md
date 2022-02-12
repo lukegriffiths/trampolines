@@ -9,6 +9,7 @@ This repo contains:
     - label the data
     - Prepare the data for YOLOv5
     - Train the model and make predictions
+    - Visualise the model predictions using PyGMT
 
 Results of the prediction are the coordinates of bounding boxes around the trampolines in the satellite images, as below.
 

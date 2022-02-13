@@ -53,7 +53,7 @@ if __name__ =='__main__':
 
     long_range = (10.5, 10.8)
     lat_range = (59.88, 59.97)
-    coords_start = (59.88, 10.5)
+    coords_start = (lat_range[0], long_range[0])
 
     num_lat = int((lat_range[1] - lat_range[0]) / spacing_lat)
     num_long = int((long_range[1] - long_range[0]) / spacing_long)
@@ -61,9 +61,9 @@ if __name__ =='__main__':
     #num_lat = 3 # number of images to take in lat direction
     #num_long = 3 # number of images to take in long direction
 
-    total_images = num_lat * num_long
+    total_num_images = num_lat * num_long
 
-    input(f"Will fetch {total_images} images - press Enter to continue...")
+    input(f"Will fetch {total_num_images} images - press Enter to continue...")
 
     zoom = 19
     # make zero-array of coordinate pairs

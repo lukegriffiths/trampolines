@@ -53,7 +53,7 @@ if __name__ =='__main__':
 
     long_range = (10.5, 10.8)
     lat_range = (59.88, 59.97)
-    coords_start = (59.88, 10.8)
+    coords_start = (59.88, 10.5)
 
     num_lat = int((lat_range[1] - lat_range[0]) / spacing_lat)
     num_long = int((long_range[1] - long_range[0]) / spacing_long)

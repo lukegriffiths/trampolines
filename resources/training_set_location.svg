@@ -24,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="157.44556"
-     inkscape:cy="365.06915"
+     inkscape:zoom="1.979899"
+     inkscape:cx="338.77012"
+     inkscape:cy="316.84703"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -58,7 +58,9 @@
        width="179.08878"
        height="124.67926"
        x="8.3873758"
-       y="15.683547" />
+       y="15.683547"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
     <image
        width="86.41291"
        height="118.00534"
@@ -1292,14 +1294,18 @@ AAAAAACNhAEAAAAAANA0zf8Bs9YRDnEIzNIAAAAASUVORK5CYII=
 "
        id="image843"
        x="11.714935"
-       y="18.768551" />
+       y="18.768551"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
     <text
        xml:space="preserve"
        style="font-size:3.39858px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.159308"
        x="125.22334"
        y="128.84706"
        id="text867"
-       transform="scale(0.98667855,1.0135013)"><tspan
+       transform="scale(0.98667855,1.0135013)"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400"><tspan
          sodipodi:role="line"
          id="tspan865"
          x="125.22334"
@@ -35568,6 +35574,8 @@ RxcefPSHlx75/9XOZuG+QsNtfutrEbJPcO+2gQU8rZaFAP8CQ+nDRpp1n7gAAAAASUVORK5CYII=
 "
        id="image881"
        x="106.55299"
-       y="18.896345" />
+       y="18.896345"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
   </g>
 </svg>

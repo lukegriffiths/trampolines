@@ -9,7 +9,7 @@ This repo contains:
     - label the data
     - Prepare the data for YOLOv5
     - Train the model and make predictions
-    - Visualise the model predictions using PyGMT
+* Visualisation and mapping of the model predictions using PyGMT
 
 Results of the prediction are the coordinates of bounding boxes around the trampolines in the satellite images, as below.
 
@@ -26,27 +26,29 @@ https://www.youtube.com/watch?v=NU9Xr_NYslo
 
 ## Installation
 
-Install the requirements in requirements.txt, which has been adapted from the YOLOv5 requirements file. I used a conda environment (called yolo5env) with python 3.9, and then pip for all required packages, as below:
+1. Install the requirements in requirements.txt, which has been adapted from the YOLOv5 requirements file. I used a conda environment (called yolo5env) with python 3.9, and then pip for all required packages, as below:
 
+    ```
     conda create -n yolo5env python=3.9
     conda activate yolo5env
     pip install -r requirements.txt
+    ```
 
-I found that cuda version cu102 had some issues, but cu101 worked well. I haven't tried any newer versions of the cuda package.
+    The requirements file specifies cuda version cu101, as I found issues when using cu102. I haven't tried any newer versions of the cuda package.
 
-Clone Yolov5 from https://github.com/ultralytics/yolov5 into the subfolder /yolov5.
+2. Clone Yolov5 from https://github.com/ultralytics/yolov5 into subfolder of this project called `/yolov5.`
 
-## Getting the satellite data
+## Getting the satellite image data
 
-Image data is loaded from Google static maps API using get_images.py
+Image data is loaded from Google static maps API using `get_images.py`.
 
-This script requires an API Key which is stored in api_key.env text file containing one line(you need to make this yourself):
+This script requires an API Key which is stored in `api_key.env` text file containing one line(you need to make this yourself using the Google developer portal - this is free of charge):
 
     API_KEY = "YOUR_KEY_HERE"
     
-get_images.py will save the images in /images along with a csv text file with the image number, long and lat, and the zoom level.
+`get_images.py` will save the images in `/images` alongside a csv text file containing the image number and the longitude, latitude, and zoom level given to the API.
 
-coordinates_calculation.ipynb is used to calculate the steps between images in measures of longitude and lattitude so that images neither overlap or have gaps between them. This depends on the location, the zoom level, and the size of the image in pixels.
+`coordinates_calculation.ipynb` is used to calculate the `spacing_long` and `spacing_lat` parameters `get_images.py` which determine the spacing between consecutive satellite images. These are measures of longitude and lattitude so that images neither overlap or have gaps between them. These values depend on the location, the zoom level, and the size of the image in pixels.
 
 ## Labelling the data
 
@@ -56,7 +58,7 @@ For this, I cloned the repository and installed the dependencies into a separate
 
 To start labelling, I opened the folder containing the images (/images in this case), changed type to YOLO, and used autosave and single class mode ('trampolines') to go faster and minimise mouse-clicks.
 
-For YOLO, images need to be split into train and validation sets using the file structure below. Labels contains only text files as produced from labelImg, and images contains only the images. If you follow the below structure, then the split_data.py script will perform a train-test-split using the data in /images and put the data in the correct folders of /data for you.
+For YOLO, images need to be split into train and validation sets using the file structure below. /labels contains only text files as produced from labelImg, and /images contains only the images. If you follow create the folders as per the below structure, then the split_data.py script will perform a train-test-split taking the data in /images and putting in the correct folders of /data for you.
 
     ├───data
 
@@ -93,11 +95,13 @@ The trained model and metrics will be saved to /yolov5/runs/train in a folder na
 
 ## Testing
 
-From the yolov5 directory, run the following, with the weights folder you want to use (below it looks for the weights in /tm7):
+From the yolov5 directory, run the following, with the weights folder you want to use (below it looks for the best set of weights in /tmX - you'll need to change this folder accordingly):
 
-    python .\detect.py --source ../images/data_2022-02-13_Oslo_Center --weights runs/train/tm14/weights/best.pt --save-txt --data data/trampolines.yaml
+    python .\detect.py --source ../images/data_2022-02-13_Oslo_Center --weights runs/train/tmX/weights/best.pt --save-txt --data data/trampolines.yaml
 
 The classified images will be will be saved to /yolov5/runs/detect
+
+--save-txt is required to get the coordinates (normalised) of the trampolines within each image. A file is generated for each image, with as many lines as trampolines detected within the image.
 
 ## Visualisation
 

@@ -10,7 +10,7 @@ load_dotenv('api_key.env')
 API_KEY = os.environ.get('API_KEY')
 print(API_KEY)
 
-def get_image(coords,topath, zoom=18, verbose=False):
+def get_image(coords, topath, zoom=18, verbose=False):
     """Get satellite image using google maps staticmap API
 
     Args:

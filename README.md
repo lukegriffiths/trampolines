@@ -56,6 +56,8 @@ I used https://github.com/tzutalin/labelImg to label the data according to the Y
 
 For this, I first cloned the repository and installed the dependencies into a *separate, clean environment* used only for labelling images. 
 
+Activate the labelling environment and from the repository folder, run `python .\labelImg.py` 
+
 To start labelling, I opened the folder containing the images (`/images` in this case), changed type to YOLO, and used autosave and single class mode ('trampolines') to go faster and minimise mouse-clicks.
 
 For YOLO, images need to be split into train and validation sets using the file structure below. `/labels` contains only text files as produced from labelImg, and `/images` contains only the images. If you follow create the folders as per the below structure, then the `split_data.py` script will perform a train-test-split taking the data in `/images` and putting in the correct folders of `/data` for you.

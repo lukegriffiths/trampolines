@@ -26,7 +26,7 @@ https://www.youtube.com/watch?v=NU9Xr_NYslo
 
 ## Installation
 
-1. Install the requirements in requirements.txt, which has been adapted from the YOLOv5 requirements file. I used a conda environment (called yolo5env) with python 3.9, and then pip for all required packages, as below:
+1. Install the requirements in requirements.txt, which has been adapted from the YOLOv5 requirements file. I used a conda environment (called yolo5env) with Python 3.9, and then pip for all required packages, as below:
 
     ```
     conda create -n yolo5env python=3.9
@@ -91,7 +91,7 @@ First `cd` to the the `/yolov5` directory and run
 
     python .\train.py --img 640 --batch 32 --epochs 200 --data data/trampolines.yaml --cfg models\yolov5s.yaml --name tm
 
-The trained model and metrics will be saved to /yolov5/runs/train in a folder named tmX with X incrementing by 1 each time.
+The trained model and metrics will be saved to `/yolov5/runs/train` in a folder named `tmX` with `X` incrementing by 1 each time.
 
 ## Testing
 

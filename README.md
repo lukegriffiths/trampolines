@@ -52,13 +52,13 @@ This script requires an API Key which is stored in `api_key.env` text file conta
 
 ## Labelling the data
 
-I used https://github.com/tzutalin/labelImg to label the data according to the YOLO formatting standard. 
+I used https://github.com/tzutalin/labelImg to label the data according to the YOLO formatting standard.
 
-For this, I cloned the repository and installed the dependencies into a separate, clean environment used only for labelling images. 
+For this, I first cloned the repository and installed the dependencies into a *separate, clean environment* used only for labelling images. 
 
-To start labelling, I opened the folder containing the images (/images in this case), changed type to YOLO, and used autosave and single class mode ('trampolines') to go faster and minimise mouse-clicks.
+To start labelling, I opened the folder containing the images (`/images` in this case), changed type to YOLO, and used autosave and single class mode ('trampolines') to go faster and minimise mouse-clicks.
 
-For YOLO, images need to be split into train and validation sets using the file structure below. /labels contains only text files as produced from labelImg, and /images contains only the images. If you follow create the folders as per the below structure, then the split_data.py script will perform a train-test-split taking the data in /images and putting in the correct folders of /data for you.
+For YOLO, images need to be split into train and validation sets using the file structure below. `/labels` contains only text files as produced from labelImg, and `/images` contains only the images. If you follow create the folders as per the below structure, then the `split_data.py` script will perform a train-test-split taking the data in `/images` and putting in the correct folders of `/data` for you.
 
     ├───data
 
@@ -79,15 +79,15 @@ For YOLO, images need to be split into train and validation sets using the file 
     ├───images
 
 
-* /images contains images and their labels
-* /data contains all the data for training and validation
-* /yolov5 contains the cloned YOLOv5 repo
+* `/images` contains images and their labels
+* `/data` contains all the data for training and validation
+* `/yolov5` contains the cloned YOLOv5 repo
 
 ## Training 
 
-Copy trampolines.yaml into the /yolov5/data/ folder. This contains some model parameters, for example here I use the the yolov5 small model. This file also contains the relative filepaths of the training and validation images.
+Copy the `trampolines.yaml`, containing parameters for the model, into the `/yolov5/data/` folder. Here I use the the yolov5 small model. This file also contains the relative filepaths of the training and validation images.
 
-First cd to the the /yolov5 directory and run
+First `cd` to the the `/yolov5` directory and run
 
     python .\train.py --img 640 --batch 32 --epochs 200 --data data/trampolines.yaml --cfg models\yolov5s.yaml --name tm
 
@@ -95,17 +95,17 @@ The trained model and metrics will be saved to /yolov5/runs/train in a folder na
 
 ## Testing
 
-From the yolov5 directory, run the following, with the weights folder you want to use (below it looks for the best set of weights in /tmX - you'll need to change this folder accordingly):
+From the `/yolov5` directory, run the following, with the weights folder you want to use (below it looks for the best set of weights in `/tmX` - you'll need to change this folder accordingly where `X` is the number of the particular trained model):
 
     python .\detect.py --source ../images/data_2022-02-13_Oslo_Center --weights runs/train/tmX/weights/best.pt --save-txt --data data/trampolines.yaml
 
-The classified images will be will be saved to /yolov5/runs/detect
+The classified images will be will be saved to `/yolov5/runs/detect`
 
---save-txt is required to get the coordinates (normalised) of the trampolines within each image. A file is generated for each image, with as many lines as trampolines detected within the image.
+The `--save-txt` tag is required to get the coordinates (normalised to the image dimensions) of the trampolines within each image. A file is generated for each image, and each contains as many lines as there are trampolines detected within the image.
 
 ## Visualisation
 
-visualisation.ipynb plots both the data from the manually-labelled test-train set (below), and the data predicted by the model across the Oslo area.
+Finally, `visualisation.ipynb` plots both the data from the manually-labelled test-train set (below), and the data predicted by the model across the Oslo area.
 
 ![](./resources/training_set_location.png)
 

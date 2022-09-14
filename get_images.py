@@ -50,11 +50,14 @@ if __name__ =='__main__':
     spacing_long = 0.00171661376953125
     spacing_lat = 0.0008583068847869413
     OFFSET = 0 # start of numbering of images
+    zoom = 19 # zoom level to use
 
     long_range = (10.5, 10.8)
     lat_range = (59.88, 59.97)
+
     coords_start = (lat_range[0], long_range[0])
 
+    # the number of images in each direction
     num_lat = int((lat_range[1] - lat_range[0]) / spacing_lat)
     num_long = int((long_range[1] - long_range[0]) / spacing_long)
     
@@ -65,7 +68,6 @@ if __name__ =='__main__':
 
     input(f"Will fetch {total_num_images} images - press Enter to continue...")
 
-    zoom = 19
     # make zero-array of coordinate pairs
     coords_grid = np.zeros((num_lat,num_long), dtype='f,f')
 
